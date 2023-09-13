@@ -35,9 +35,9 @@ fail to complete exercise 1 or don't understand how to apply it in exercise 2,
 we run this assignment in two parts.
 
 - In the first week, you focus on exercises 1 and 2. You submit your project
-  before the Monday lab session starts.
+  before the next lab session starts.
 
-  During the Monday lab session, we discuss the solution to these two
+  During the lab session, we discuss the solution to these two
   exercises. You can use what you learn during the lab session while solving
   the other exercises in the assignment. 
 
