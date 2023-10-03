@@ -236,10 +236,11 @@ Implement this function `processCLIArgs :: [String] -> String` in
 [`src/FormulatorCLI.hs`](src/FormulatorCLI.hs). You are allowed, but not required, to use the
 following modules:
 
-- [`Data.List.Split`](https://hackage.haskell.org/package/split-0.1.1/docs/Data-List-Split.html)
+- [`Data.List.Split`](https://hackage.haskell.org/package/split-0.2.3.5/docs/Data-List-Split.html)
   to split lists based on some delimeter.
-- [`Data.Either`](https://hackage.haskell.org/package/base-4.14.0.0/docs/Data-Either.html)
+- [`Data.Either`](https://hackage.haskell.org/package/base-4.16.4.0/docs/Data-Either.html)
   for all kinds of `Either` related functionality.
+- [`Text.Read`](https://hackage.haskell.org/package/base-4.16.4.0/docs/Text-Read.html) for parsing integers with `readMaybe` or `readEither`.
 
 These modules are already imported in [`src/FormulatorCLI.hs`](src/FormulatorCLI.hs) and added
 to the Cabal project.

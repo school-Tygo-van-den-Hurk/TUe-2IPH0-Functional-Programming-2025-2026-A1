@@ -1,7 +1,7 @@
 import           Test.Hspec
 import           Test.QuickCheck
 import           Control.Exception              ( evaluate )
-import           ExprLanguage                   ( Expr(Var, Const, Plus, Mult) )
+import           ExprLanguage                   ( Expr(Var, Const, Plus, Mult), parseExpr )
 import           FormulaManipulator             ( foldE
                                                 , printE
                                                 , evalE
