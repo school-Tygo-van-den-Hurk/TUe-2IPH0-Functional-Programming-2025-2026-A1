@@ -10,7 +10,7 @@ that you have to use in this assignment.
 You find the definition of `Expr` in the file
 [`src/ExprLanguage.hs`](src/ExprLanguage.hs) together with the function
 `parseExpr` to translate a String to an `Expr`.  In that source file you can
-find [Haddock](https://haskell-haddock.readthedocs.io/en/latest/index.html)
+find [Haddock](https://haskell-haddock.readthedocs.io/latest/index.html)
 documentation explaining how to use this module. 
 
 **Tip** Run `cabal haddock` to generate nice HTML formatted documentation.
@@ -224,7 +224,7 @@ Create a simple command-line interface. We already have written a suitable
 main :: IO ()
 main = do
         as <- getArgs
-        print (processCLIArgs as)
+        putStrLn (processCLIArgs as)
 ```
 
 This `main` function uses the IO monad. In the `main` function the
@@ -238,9 +238,9 @@ following modules:
 
 - [`Data.List.Split`](https://hackage.haskell.org/package/split-0.2.3.5/docs/Data-List-Split.html)
   to split lists based on some delimeter.
-- [`Data.Either`](https://hackage.haskell.org/package/base-4.16.4.0/docs/Data-Either.html)
+- [`Data.Either`](https://hackage.haskell.org/package/base-4.17.2.1/docs/Data-Either.html)
   for all kinds of `Either` related functionality.
-- [`Text.Read`](https://hackage.haskell.org/package/base-4.16.4.0/docs/Text-Read.html) for parsing integers with `readMaybe` or `readEither`.
+- [`Text.Read`](https://hackage.haskell.org/package/base-4.17.2.1/docs/Text-Read.html) for parsing integers with `readMaybe` or `readEither`.
 
 These modules are already imported in [`src/FormulatorCLI.hs`](src/FormulatorCLI.hs) and added
 to the Cabal project.
