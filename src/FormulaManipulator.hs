@@ -19,6 +19,7 @@ where
 import           ExprLanguage                   ( Expr(Var, Const, Plus, Mult) )
 
 foldE     = error "Implement, document, and test this function"
+printE :: Expr String Integer -> String
 printE    = error "Implement, document, and test this function"
 evalE     = error "Implement, document, and test this function"
 simplifyE = error "Implement, document, and test this function"

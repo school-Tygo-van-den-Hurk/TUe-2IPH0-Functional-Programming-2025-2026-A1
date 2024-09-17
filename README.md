@@ -113,6 +113,8 @@ and read your own documentation.
 
 Convince yourself and us that your implementation works by writing tests for
 this function in [`test/Spec.hs`](test/Spec.hs).
+
+**Hint**: There is a correspondence with a fold, the constructors of the data type and the identity function. For instance, the function `foldL [] (:)` is equivalent to the identity function for lists.
   
 #### Exercise 2
 
@@ -278,7 +280,7 @@ cabal run formulator -- --evaluate "f=1;g=7" "3 + 5 * g * f"
 cabal run formulator -- -d "f" "3 + 5 * 5 * f * f"             
   => "((25 * f) + (25 * f))"
 cabal run formulator -- --simplify "3 + 1 * x + (x * 0) + 45"  
-  => "((x + 3) + 45)"
+  => "((3 + x) + 45)"
 cabal run formulator -- -p "3 + 1 * x + (x * 0) + 45"          
   => "(((3 + (1 * x)) + (x * 0)) + 45)"
 ```
