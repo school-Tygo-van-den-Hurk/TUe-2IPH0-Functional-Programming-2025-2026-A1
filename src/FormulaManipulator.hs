@@ -13,12 +13,10 @@ module FormulaManipulator
   , evalE
   , simplifyE
   , diffE
-  , parseExpr
-  , Expr(..)
   )
 where
 
-import           ExprLanguage                   ( Expr(Var, Const, Plus, Mult), parseExpr )
+import           ExprLanguage                   ( Expr(Var, Const, Plus, Mult) )
 
 foldE     = error "Implement, document, and test this function"
 printE :: Expr String Integer -> String

@@ -121,7 +121,7 @@ this function in [`test/Spec.hs`](test/Spec.hs).
 Using the function `foldE`, implement function `printE` in
 [`src/FormulaManipulator.hs`](src/FormulaManipulator.hs) that pretty-prints an
 expression. For example, an expression constructed like `Mult (Const 5) (Plus
-(Var "x") (Const 3))` is pretty-printed as "5 * (x + 3)".
+(Var "x") (Const 3))` is pretty-printed as "(5 * (x + 3))".
 
 For all expression it must hold that if you parse the pretty-printed
 expression you get the original expression back. Stated in Haskell terms: for
