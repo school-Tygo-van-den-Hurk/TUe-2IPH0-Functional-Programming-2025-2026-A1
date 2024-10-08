@@ -239,7 +239,7 @@ Implement this function `processCLIArgs :: [String] -> String` in
 following modules:
 
 - [`Data.List.Split`](https://hackage.haskell.org/package/split-0.2.3.5/docs/Data-List-Split.html)
-  to split lists based on some delimeter.
+  to split lists based on some delimiter.
 - [`Data.Either`](https://hackage.haskell.org/package/base-4.17.2.1/docs/Data-Either.html)
   for all kinds of `Either` related functionality.
 - [`Text.Read`](https://hackage.haskell.org/package/base-4.17.2.1/docs/Text-Read.html) for parsing integers with `readMaybe` or `readEither`.
