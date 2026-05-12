@@ -17,7 +17,7 @@ documentation explaining how to use this module.
 
 ## Assignment
 
-This assignment consists of six programming exercises. In the end you should
+This assignment consists of six programming exercises and a bonus. In the end you should
 have a working program with a command-line interface as specified in Exercise
 6.
 
@@ -29,28 +29,19 @@ these six programming exercises, you also have to write tests in
 
 ### Split over two weeks
 
-Exercises 2 through 6 build on your solution of exercise 1 and its application
-in exercise 2. To prevent you from failing the whole assignment because you
-fail to complete exercise 1 or don't understand how to apply it in exercise 2,
-we run this assignment in two parts.
+The assignment is split in two parts, mostly so you have clear goal for the first week and can test the validity using Momotor output.
 
-- In the first week, you focus on exercises 1 and 2. You submit your project
-  before the next lab session starts.
-
-  During the lab session, we discuss the solution to these two
-  exercises. You can use what you learn during the lab session while solving
-  the other exercises in the assignment. 
-
-  Of course, you can continue with exercises 3 through 6 already in the first
-  week.
+- In the first week, you focus on exercises 1 and 2, submit these for feedback from Momotor.
 
 - In the second week, you finish the complete assignment. You submit your
   whole project.
 
 ### Grading
 
-We grade you on exercises 1 and 2 based on your submission in the first week.
-We grade you on exercises 3- 6 based on your submission in the second week.
+We grade you on exercises 1-6 based on your submission in the second week.
+
+#### Bonus
+The bonus exercise is more challenging, but mandatory for an Excellent grade.
 
 
 ### Getting started
@@ -58,8 +49,7 @@ We grade you on exercises 3- 6 based on your submission in the second week.
 1.  Clone this repository. It contains a Cabal project. Do not *manually* add
     files to or remove files from this project, nor change any file names. All
     you have to do is changing the contents of
-    [`src/FormulaManipulator.hs`](src/FormulaManipulator.hs),
-    [`src/FormulatorCLI.hs`](src/FormulatorCLI.hs), and
+    [`src/FormulaManipulator.hs`](src/FormulaManipulator.hs) and
     [`test/Spec.hs`](test/Spec.hs).
 
 2.  Verify that the project works by running `cabal test`. All tests pass.
@@ -71,12 +61,10 @@ We grade you on exercises 3- 6 based on your submission in the second week.
     something to work, comment out the problematic parts to keep the project
     working.
 
-4.  In completing this assignment, you deliver three files:
+4.  In completing this assignment, you deliver two files:
 
     * The Haskell file [`src/FormulaManipulator.hs`](src/FormulaManipulator)
-      for exercises 1 through 5;
-    * The Haskell file [`src/FormulatorCLI.hs`](src/FormulatorCLI.hs) for
-      exercise 6;
+      for exercises 1 through 6;
     * The Haskell file [`test/Spec.hs`](test/Spec.hs) for exercises 1 through
       6; and
 
@@ -215,7 +203,7 @@ and read your own documentation.
 Convince yourself and us that your implementation works by writing tests for
 this function in [`test/Spec.hs`](test/Spec.hs).
   
-### Program a command-line interface in module `FormulatorCLI`
+### Program a command-line interface in module
 
 #### Exercise 6
   
@@ -235,16 +223,16 @@ This list with command-line arguments is then processed by the function
 `processCLIArgs`. The output of `processCLIArgs` is printed to the console.
 
 Implement this function `processCLIArgs :: [String] -> String` in
-[`src/FormulatorCLI.hs`](src/FormulatorCLI.hs). You are allowed, but not required, to use the
+[`src/FormulaManipulator.hs`](src/FormulaManipulator.hs). You are allowed, but not required, to use the
 following modules:
 
-- [`Data.List.Split`](https://hackage.haskell.org/package/split-0.2.3.5/docs/Data-List-Split.html)
+- [`Data.List.Split`](https://hackage.haskell.org/package/split-0.2.5/docs/Data-List-Split.html)
   to split lists based on some delimiter.
-- [`Data.Either`](https://hackage.haskell.org/package/base-4.17.2.1/docs/Data-Either.html)
+- [`Data.Either`](https://hackage.haskell.org/package/base-4.18.3.0/docs/Data-Either.html)
   for all kinds of `Either` related functionality.
-- [`Text.Read`](https://hackage.haskell.org/package/base-4.17.2.1/docs/Text-Read.html) for parsing integers with `readMaybe` or `readEither`.
+- [`Text.Read`](https://hackage.haskell.org/package/base-4.18.3.0/docs/Text-Read.html) for parsing integers with `readMaybe` or `readEither`.
 
-These modules are already imported in [`src/FormulatorCLI.hs`](src/FormulatorCLI.hs) and added
+These modules are already imported in [`src/FormulaManipulator.hs`](src/FormulaManipulator.hs) and added
 to the Cabal project.
 
 Compile and run your project as follows:
