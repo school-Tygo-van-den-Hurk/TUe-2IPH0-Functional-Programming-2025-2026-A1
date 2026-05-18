@@ -1,7 +1,7 @@
 module Main (main) where
 
 import System.Environment (getArgs)
-import FormulatorCLI (processCLIArgs)
+import FormulaManipulator (processCLIArgs)
 
 main :: IO ()
 main = do

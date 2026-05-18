@@ -41,6 +41,7 @@ type Algebra f c = f c -> c
 cata :: Functor f => Algebra f c -> Fix f -> c 
 cata f = f . fmap (cata f) . unFix
 
-printEF = error "Implement, document, and test this function"
-evalEF = error "Implement, document, and test this function"
-  
+toExprF :: Expr a b -> Fix (ExprF a b)
+toExprF = error "Implement and document this function"
+
+normalizeE = error "Implement, document, and test this function"

@@ -1,3 +1,11 @@
+{-|
+Module      : Spec
+Copyright   : STUDENT NAME 1 (ID)
+              STUDENT NAME 2 (ID)
+
+This module contains tests for the `FormulaManipulator` library.
+-}
+
 import           Test.Hspec
 import           Test.QuickCheck
 import           Control.Exception              ( evaluate )
@@ -7,8 +15,9 @@ import           FormulaManipulator             ( foldE
                                                 , evalE
                                                 , simplifyE
                                                 , diffE
+                                                , processCLIArgs
+                                                , normalizeE
                                                 )
-import           FormulatorCLI                  ( processCLIArgs )
 
 main :: IO ()
 main = hspec $ do
@@ -39,3 +48,7 @@ main = hspec $ do
       it "should have tests" $ do
         (1 :: Integer) `shouldBe` (1 :: Integer)
 
+  -- Bonus exercise tests can be added here
+  describe "normalizeE" $ do
+    it "should have tests" $ do
+        (1 :: Integer) `shouldBe` (1 :: Integer)
