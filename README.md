@@ -7,13 +7,13 @@ manipulate formulas containing variables, constant values, multiplications,
 and additions. We have created a Haskell data type for these formulas, `Expr`,
 that you have to use in this assignment. 
 
-You find the definition of `Expr` in the file
+You can find the definition of `Expr` in the file
 [`src/ExprLanguage.hs`](src/ExprLanguage.hs) together with the function
 `parseExpr` to translate a String to an `Expr`.  In that source file you can
 find [Haddock](https://haskell-haddock.readthedocs.io/latest/index.html)
 documentation explaining how to use this module. 
 
-**Tip** Run `cabal haddock` to generate nice HTML formatted documentation.
+**Tip** Run `cabal haddock` to generate nicely formatted HTML documentation.
 
 ## Assignment
 
@@ -29,7 +29,7 @@ these six programming exercises, you also have to write tests in
 
 ### Split over two weeks
 
-The assignment is split in two parts, mostly so you have clear goals for the first week and can test the validity using Momotor output.
+The assignment is split into two parts, mainly so you have clear goals for the first week and can check your progress using Momotor output.
 
 - In the first week, you focus on exercises 1 and 2, submit these for feedback from Momotor.
 
@@ -38,7 +38,7 @@ The assignment is split in two parts, mostly so you have clear goals for the fir
 
 ### Grading
 
-We grade you on exercises 1-6 based on your submission in the second week.
+We grade you on Exercises 1-6 based on your submission in the second week.
 
 #### Bonus
 The bonus exercise is more challenging, but mandatory for an Excellent grade.
@@ -49,7 +49,7 @@ The bonus exercise is more challenging, but mandatory for an Excellent grade.
 and read your own documentation.
 * Each function has at least two sensible tests in [`test/Spec.hs`](test/Spec.hs). For an excellent grade, more thorough testing is needed.
 * `cabal build` works without compilation errors.
-* `cabal tests` passes.
+* `cabal test` passes.
 * Names and student numbers are present in [`src/FormulaManipulator.hs`](src/FormulaManipulator.hs) and [`test/Spec.hs`](test/Spec.hs)
 
 ### Getting started
@@ -72,9 +72,9 @@ and read your own documentation.
 4.  In completing this assignment, you deliver two files:
 
     * The Haskell file [`src/FormulaManipulator.hs`](src/FormulaManipulator.hs)
-      for exercises 1 through 6;
-    * The Haskell file [`test/Spec.hs`](test/Spec.hs) for exercises 1 through
-      6; and
+      for Exercises 1 through 6.
+    * The Haskell file [`test/Spec.hs`](test/Spec.hs) for Exercises 1 through
+      6.
 
     Do not forget to have your names, student numbers, and date visible and at
     the top of all files you edit.
@@ -112,7 +112,7 @@ Using the function `foldE`, implement function `printE` in
 expression. For example, an expression constructed like `Mult (Const 5) (Plus
 (Var "x") (Const 3))` is pretty-printed as "(5 * (x + 3))".
 
-For all expression it must hold that if you parse the pretty-printed
+For all expressions, it must hold that if you parse the pretty-printed
 expression you get the original expression back. Stated in Haskell terms: for
 all expressions `e` in `Expr` it holds `e == ((\(Right x) -> x) . parseExpr .
 printE) e`
@@ -159,7 +159,7 @@ Using `foldE`, implement function `diffE` in
 expression for a given variable. For example, `(printE . diffE "x") (Mult (Var
 "x") (Const 2))`  should return `"((x * 0) + (1 * 2))"`.
 
-Let `'` represents the derivative for `x`. Implement the following
+Let `'` represent the derivative with respect to `x`. Implement the following
 differentiation rules:
 
 * Constant rule: (∀ `c`: `Num c` : `c'` = 0)
@@ -246,10 +246,10 @@ cabal run formulator -- -p "3 + 1 * x + (x * 0) + 45"
 ```
 
 ## Bonus 
-Following the instruction on [School of Haskell](https://www.schoolofhaskell.com/user/bartosz/understanding-algebras), but apply it to a similar expression language we have used so far. 
+Follow the instruction on [School of Haskell](https://www.schoolofhaskell.com/user/bartosz/understanding-algebras), but apply it to a similar expression language we have used so far. 
 
-1. Define your own data type `ExprF` with appropriate constrtuctors.
-2. Define a a [`Functor`](https://hackage-content.haskell.org/package/base-4.22.0.0/docs/Data-Functor.html) instance for this data type.
+1. Define your own data type `ExprF` with appropriate constructors.
+2. Define a [`Functor`](https://hackage-content.haskell.org/package/base-4.22.0.0/docs/Data-Functor.html) instance for this data type.
 3. Define the function, `toExprF`. Using this in combination with `parseExpr` you should be able to get `Fix (ExprF String Integer)` from a string.
-3. Using the above data type, and the `cata` function, implement the `normalizeE` function. The normalize function should normalize an expression, such that semantically equivalent expressions, will be normalized to the same expression. For instance, `normalizeE` applied to `(5+x)` and `(5+x)` should return the same expression for both. But also for more complex examples such as `(5*x)+(y*x)` and ``(4*x)+(y*x)+x`. However, the normalized expression should always be equivalent to the non-normalized one.
-**Note** you are free to pick your own way how this normalized form should look like. Additionally, you are allowed to use the packages wich are loaded in the project file, such as `Data.Map` from the `containers` package.
+4. Using the above data type, and the `cata` function, implement the `normalizeE` function. The normalize function should normalize an expression such that semantically equivalent expressions are normalized to the same expression. For instance, `normalizeE` applied to `(5+x)` and `(x+5)` should return the same expression for both. Also consider more complex examples such as `(5*x)+(y*x)` and `(4*x)+(y*x)+x`. However, the normalized expression should always be equivalent to the non-normalized one.
+**Note** You are free to choose how this normalized form should look. Additionally, you may use the packages loaded in the project file, such as `Data.Map` from the `containers` package. One solution is building up an alternative data structure using the `cata` and afterwards unfold that data structure to on expression again.
