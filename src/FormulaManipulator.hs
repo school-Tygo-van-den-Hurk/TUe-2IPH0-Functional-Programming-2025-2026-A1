@@ -10,11 +10,15 @@ formulas and expressions represented by `Expr` values.
 
 module FormulaManipulator where
 
-import           Data.Either
 import           Data.List.Split                (splitOn
                                                 , endBy
                                                 )
-import           Data.Map
+import           Text.Read                      (readMaybe)
+
+import qualified Data.Map                       as M
+import qualified Data.Either                    as E
+import qualified Data.List                      as L
+
 import           ExprLanguage                   ( Expr(..)
                                                 , parseExpr
                                                 , ParseError
@@ -43,5 +47,8 @@ cata f = f . fmap (cata f) . unFix
 
 toExprF :: Expr a b -> Fix (ExprF a b)
 toExprF = error "Implement and document this function"
+
+fromExprF :: Fix (ExprF a b) -> Expr a b
+fromExprF = error "Implement and document this function"
 
 normalizeE = error "Implement, document, and test this function"

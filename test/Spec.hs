@@ -7,17 +7,24 @@ This module contains tests for the `FormulaManipulator` library.
 -}
 
 import           Test.Hspec
-import           Test.QuickCheck
-import           Control.Exception              ( evaluate )
-import           ExprLanguage                   ( Expr(Var, Const, Plus, Mult), parseExpr )
+import           Test.Hspec.QuickCheck
+import           Control.Exception              ( evaluate, try, catch, SomeException)
+import           ExprLanguage                   ( Expr(Var, Const, Plus, Mult)
+                                                , parseExpr
+                                                )
 import           FormulaManipulator             ( foldE
                                                 , printE
                                                 , evalE
                                                 , simplifyE
                                                 , diffE
                                                 , processCLIArgs
+                                                , toExprF
+                                                , fromExprF
                                                 , normalizeE
+                                                , ExprF(..)
+                                                , Fix(..)
                                                 )
+import Data.Either                              (fromRight)
 
 main :: IO ()
 main = hspec $ do
