@@ -1,9 +1,9 @@
 module Main (main) where
 
-import System.Environment (getArgs)
 import FormulaManipulator (processCLIArgs)
+import System.Environment (getArgs)
 
 main :: IO ()
 main = do
-        as <- getArgs
-        putStrLn (processCLIArgs as)
+  as <- getArgs
+  putStrLn (processCLIArgs as)
