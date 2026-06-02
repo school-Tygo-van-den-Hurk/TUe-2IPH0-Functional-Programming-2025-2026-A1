@@ -40,8 +40,33 @@ main = hspec $ do
         y' = varDef "y"
 
     describe "foldE" $ do
-      it "should have tests" $ do
-        (1 :: Integer) `shouldBe` (1 :: Integer)
+
+      describe "toString" $ do
+        let foldPrint = foldE id show (\l r -> "("++l++"+"++r++")") (\l r -> "("++l++"*"++r++")")
+        
+        describe "Base Case" $ do
+          
+          describe "Const" $ do
+            it "1 => \"1\"" $ do
+              foldPrint one `shouldBe` "1"
+          
+          describe "Var" $ do
+            it "x => \"x\"" $ do
+              foldPrint x `shouldBe` "x"
+
+          describe "Plus" $ do
+            it "1 + 2 => \"(1+2)\"" $ do
+              foldPrint (Plus one two) `shouldBe` "(1+2)"
+          
+          describe "Mult" $ do
+            it "1 + 2 => \"(1+2)\"" $ do
+              foldPrint (Mult one two) `shouldBe` "(1*2)"
+
+        describe "Step Case" $ do
+          it "1 + 2 * 3 => \"(1+(2*3))\"" $ do
+              foldPrint (Plus one (Mult two three)) `shouldBe` "(1+(2*3))"
+          it "1 + 2 * x => \"(1+(2*x))\"" $ do
+              foldPrint (Plus one (Mult two x)) `shouldBe` "(1+(2*x))"
 
     describe "printE" $ do
       describe "Base Case" $ do
