@@ -2,7 +2,6 @@
 -- Module      : Spec
 -- Description : This module contains tests for the `FormulaManipulator` library.
 -- Copyright   : Tygo van den Hurk (1705709)
---               Kylian Maas (1712861)
 -- Date:       : 2026-06-02
 -- License     : None
 --
@@ -19,26 +18,26 @@ import FormulaManipulator
   )
 import Test.Hspec
 
+varDef :: String -> Integer
+varDef "x" = 3
+varDef "y" = 4
+varDef _ = error "Not a defined variable" 
+
 main :: IO ()
 main = hspec $ do
+  let zero = Const (0 :: Integer) :: Expr String Integer
+  let one = Const (1 :: Integer) :: Expr String Integer
+  let two = Const (2 :: Integer) :: Expr String Integer
+  let three = Const (3 :: Integer) :: Expr String Integer
+  let four = Const (4 :: Integer) :: Expr String Integer
+  let six = Const (6 :: Integer) :: Expr String Integer
+  let x = Var ("x" :: String) :: Expr String Integer
+  let y = Var ("y" :: String) :: Expr String Integer
+
+  let x' = varDef "x"
+  let y' = varDef "y"
+
   describe "FormulaManipulator" $ do
-    let zero = Const (0 :: Integer) :: Expr String Integer
-        one = Const (1 :: Integer) :: Expr String Integer
-        two = Const (2 :: Integer) :: Expr String Integer
-        three = Const (3 :: Integer) :: Expr String Integer
-        four = Const (4 :: Integer) :: Expr String Integer
-        six = Const (6 :: Integer) :: Expr String Integer
-        x = Var ("x" :: String) :: Expr String Integer
-        y = Var ("y" :: String) :: Expr String Integer
-
-        varDef :: String -> Integer
-        varDef "x" = 3
-        varDef "y" = 4
-        varDef _ = error "Not a defined variable"
-
-        x' = varDef "x"
-        y' = varDef "y"
-
     describe "foldE" $ do
 
       describe "toString" $ do
@@ -276,7 +275,7 @@ main = hspec $ do
               simplifyE (Plus (Mult (Mult x two) two) (Mult two x)) `shouldBe` Mult six x
               
         describe "diffE" $ do
-          let diff = diffE "x"
+          let diff = simplifyE . diffE "x"
 
           describe "Base Case" $ do
             describe "Const" $ do
@@ -338,9 +337,53 @@ main = hspec $ do
                 diff (Plus three (Plus (Mult x two) (Mult three (Mult x x)) )) `shouldBe` Plus two (Mult six x)
 
   describe "FormulatorCLI" $ do
+    
     describe "processCLIArgs" $ do
-      it "should have tests" $ do
-        (1 :: Integer) `shouldBe` (1 :: Integer)
+    
+      describe "Pretty Printing" $ do
+        let expr = Mult six $ Plus two x
+        let short = processCLIArgs ["-s", printE expr]
+        let long = processCLIArgs ["--print", printE expr]
+        it "-p / --print" $ do
+          short `shouldBe` long
+        it "-s / --simplify == simplifyE" $ do
+          printE expr `shouldBe` short
+
+      describe "Simplifying" $ do
+        let expr = Mult one $ Plus zero x
+        let short = processCLIArgs ["-s", printE expr]
+        let long = processCLIArgs ["--simplify", printE expr]
+        it "-s == --simplify" $ do
+          short `shouldBe` long
+        it "-s / --simplify == simplifyE" $ do
+          printE (simplifyE expr) `shouldBe` long
+
+      describe "Differentiating" $ do
+        let expr = Plus (Mult two $ Mult x x) $ Plus (Mult two x) six
+        let short = processCLIArgs ["-d", "x", printE expr]
+        let long = processCLIArgs ["--differentiate", "x", printE expr]
+        it "-d == --differentiate" $ do
+          short `shouldBe` long
+        it "-d / --differentiate == simplifyE . diffE" $ do
+          let diffed = diffE "x" expr
+          let simplified = simplifyE diffed
+          short `shouldBe` printE simplified
+
+      describe "Evaluating" $ do
+        let expr = Plus (Mult two $ Mult x x) $ Plus (Mult two x) six
+        let short = processCLIArgs ["-e", "x=3;y=4", printE expr]
+        let long = processCLIArgs ["--evaluate", "x=3;y=4", printE expr]
+        it "-e == --evaluate" $ do
+          short `shouldBe` long
+        it "-e / --evaluate == simplifyE" $ do
+          let result = evalE varDef expr
+          short `shouldBe` show result
+
+      describe "Help" $ do
+        let short = processCLIArgs ["-h"]
+        let long = processCLIArgs ["--help"]
+        it "-h == --help" $ do
+          short `shouldBe` long
 
   -- Bonus exercise tests can be added here
   describe "normalizeE" $ do

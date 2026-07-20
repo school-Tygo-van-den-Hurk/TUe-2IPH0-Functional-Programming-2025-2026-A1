@@ -2,7 +2,6 @@
 -- Module      : FormulaManipulator
 -- Description : Manipulate formulas and expressions represented by `Expr` values
 -- Copyright   : Tygo van den Hurk (1705709)
---               Kylian Maas (1712861)
 -- Date:       : 2026-06-02
 -- License      : None
 --
@@ -237,7 +236,7 @@ diffE ::
   Expr a n ->
   -- | The resulting `Expr` after differentiating.
   Expr a n
-diffE variable expr = let (_, result) = diff expr in simplifyE result
+diffE variable expr = let (_, result) = diff expr in {-simplifyE-} result
   where
     diff = foldE varCase constCase plusCase multCase
     varCase v = (Var v, if v == variable then Const 1 else Const 0)
@@ -340,7 +339,7 @@ processCLIArgs args =
           Help -> helpMsg
           Print -> printE expr
           Simplify -> printE (simplifyE expr)
-          Differentiate var -> printE (diffE var expr)
+          Differentiate var -> printE $ simplifyE (diffE var expr)
           Evaluate tbl -> show (evalE (toTable tbl) expr)
   where
     toTable :: String -> (String -> Integer)
@@ -360,8 +359,7 @@ processCLIArgs args =
 --
 -- After normalizing the `Expr` represents the same value. So for example: "x + 5" = "5 + x".
 --
-normalizeE :: (Eq a, Num b) => Expr a b -> Expr a b
-normalizeE = foldE Var Const Plus Mult
+normalizeE = error "Implement and document this function"
 
 newtype Fix f = Fx (f (Fix f))
 
